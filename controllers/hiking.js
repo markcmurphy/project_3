@@ -8,14 +8,14 @@ router.get('/', (req, res)=>{
     res.json(foundHikes);
   });
 });
-//
-// //Create
-// router.post('/', (req, res)=>{
-//   console.log(req.body);
-//   Books.create(req.body, (err, createdBooks)=>{
-//     res.json(createdBooks);
-//   });
-// });
+
+//Create
+router.post('/', (req, res)=>{
+  console.log(req.body);
+  Hikes.create(req.body, (err, createdHike)=>{
+    res.json(createdHike);
+  });
+});
 //
 // //Delete
 // router.delete('/:id', (req, res)=>{
