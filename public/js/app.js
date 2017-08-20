@@ -31,7 +31,7 @@ app.controller('appController', ['$http', function($http){
       }
     }).then(
       function(res){
-        controller.getBooks();
+        controller.getHikes();
       },
       function(err){
         console.log(err);
