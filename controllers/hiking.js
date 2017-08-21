@@ -9,26 +9,26 @@ router.get('/', (req, res)=>{
   });
 });
 
-//Create
+//Create hike
 router.post('/', (req, res)=>{
   console.log(req.body);
   Hikes.create(req.body, (err, createdHike)=>{
     res.json(createdHike);
   });
 });
-//
-// //Delete
-// router.delete('/:id', (req, res)=>{
-//   Books.findByIdAndRemove(req.params.id, (err, deletedBook)=>{
-//     res.json(deletedBook);
-//   })
-// })
-//
-// //Update
-// router.put('/:id', (req, res)=>{
-//   Books.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedBook)=>{
-//     res.json(updatedBook);
-//   });
-// });
+
+//Delete hike
+router.delete('/:id', (req, res)=>{
+  Hikes.findByIdAndRemove(req.params.id, (err, deletedHike)=>{
+    res.json(deletedHike);
+  })
+})
+
+//Update hike
+router.put('/:id', (req, res)=>{
+  Hikes.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedHike)=>{
+    res.json(updatedHike);
+  });
+});
 
 module.exports = router;
