@@ -4,6 +4,7 @@ const Hikes = require('../models/hikes.js');
 
 //Index
 router.get('/', (req, res)=>{
+  req.session.anyProperty = 'any value';
   Hikes.find((err, foundHikes)=>{
     res.json(foundHikes);
   });
@@ -29,6 +30,15 @@ router.put('/:id', (req, res)=>{
   Hikes.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedHike)=>{
     res.json(updatedHike);
   });
+});
+
+router.get('/retrieve', function(req, res){
+	if(req.session.anyProperty === "any value"){
+    console.log('worked');
+  }
+  else {
+    console.log('did not work');
+	}
 });
 
 module.exports = router;
