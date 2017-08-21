@@ -95,5 +95,33 @@ app.controller('WeatherCtrl', ['$http', function($http){
             }
         );
     }
-// end of weather controller
+    // end of this.getWeather
+
+    this.postWeather = function() {
+      console.log('called')
+      const data = {
+        city: controller.query
+      }
+      console.log(controller.query, 'post')
+      $http({
+        method: 'POST',
+        url: '/weather',
+        data: data
+
+      }).then(
+        function(response) {
+          console.log(response, ' this is response from post')
+          controller.message = response.data.main.temp + "°F in " + response.data.name
+          // $scope.photos = response
+
+        },
+        function(err) {
+          console.log(err);
+        }
+      );
+    }
+// end of this.postWeather
+
+
 }]);
+// end of weather controller

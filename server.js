@@ -4,7 +4,7 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const port = process.env.PORT || 3000;
-require('dotenv').config()
+require('dotenv').config();
 
 
 //Middleware installed

@@ -21,5 +21,4 @@ const getWeather = (res, city) => {
 // end of const getWeather
 }
 
-
 module.exports = getWeather;
