@@ -78,7 +78,7 @@ app.controller('appController', ['$http', function($http){
 // beginning of weather controller
 app.controller('WeatherCtrl', ['$http', function($http){
     const controller = this;
-    this.message = '',
+    this.message = 'Weather is....',
     this.getWeather = function() {
       console.log('called')
         $http({
