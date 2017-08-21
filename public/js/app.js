@@ -37,37 +37,39 @@ app.controller('appController', ['$http', function($http){
         console.log(err);
       }
     );
+  },
+  this.editHike = function(hike){
+    $http({
+      method: 'PUT',
+      url: '/hikes/' + hike._id,
+      data: {
+        hikeName: this.editedhikeName,
+        location: this.editedlocation,
+        description: this.editeddescription,
+        waterToConsume: this.editedwaterToConsume,
+        clothingToWear: this.editedclothingToWear
+      }
+    }).then(
+      function(res){
+        controller.getHikes();
+      },
+      function(err){
+        console.log(err);
+      }
+    );
+  },
+  this.deleteHike = function(hike){
+    $http({
+      method: 'DELETE',
+      url: '/hikes/' + hike._id
+    }).then(
+      function(res){
+        controller.getHikes();
+      },
+      function(err){
+        console.log(err);
+      }
+    );
   }
-//   this.editBook = function(book){
-//     $http({
-//       method: 'put',
-//       url: '/books/' + book._id,
-//       data: {
-//         title: this.editedTitle,
-//         description: this.editedDescription,
-//         author: this.editedAuthor
-//       }
-//     }).then(
-//       function(res){
-//         controller.getBooks();
-//       },
-//       function(err){
-//         console.log(err);
-//       }
-//     );
-//   },
-//   this.deleteBook = function(book){
-//     $http({
-//       method: 'delete',
-//       url: '/books/' + book._id
-//     }).then(
-//       function(res){
-//         controller.getBooks();
-//       },
-//       function(err){
-//         console.log(err);
-//       }
-//     );
-//   }
   this.getHikes();
 }]);
