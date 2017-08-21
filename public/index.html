@@ -57,8 +57,13 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
 </div>
 <!-- END this is where user submits new hike -->
 
+<!-- testing WeatherCtrl -->
+<section ng-controller="WeatherCtrl as weath">
+  <h1>{{weath.message}}</h1>
+    <button ng-click="weath.getWeather()">Get Weather</button>
+</section>
 
-
+<!-- END testing WeatherCtrl -->
 
 
 

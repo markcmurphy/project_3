@@ -73,3 +73,27 @@ app.controller('appController', ['$http', function($http){
   }
   this.getHikes();
 }]);
+
+
+// beginning of weather controller
+app.controller('WeatherCtrl', ['$http', function($http){
+    const controller = this;
+    this.message = '',
+    this.getWeather = function() {
+      console.log('called')
+        $http({
+            method: 'GET',
+            url: '/weather'
+        }).then(
+            function(response){
+                console.log(response, ' this is response')
+                controller.message = response.data.main.temp + "°F in " + response.data.name
+                // $scope.photos = response
+            },
+            function(err){
+                console.log(err);
+            }
+        );
+    }
+// end of weather controller
+}]);
