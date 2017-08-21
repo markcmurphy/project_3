@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const port = process.env.PORT || 3000;
 
 //Middleware installed
 app.use(bodyParser.json());
@@ -11,13 +12,13 @@ app.use(express.static('public'));
 const hikingController = require('./controllers/hiking.js');
 app.use('/hikes', hikingController)
 
+const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/eveningcoast';
+mongoose.connect(mongoUri);
 
-//Connections to mongoose
-mongoose.connect('mongodb://localhost:27017/hiker');
-mongoose.connection.once('open', ()=>{
-  console.log('connected to mongo');
+mongoose.connection.once('open', () => {
+  console.log('connect to mongo')
 })
 
-app.listen(3000, () => {
-  console.log('listening')
+app.listen(port, () => {
+  console.log('listening..')
 })
