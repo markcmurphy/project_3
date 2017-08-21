@@ -19,7 +19,9 @@
   "homepage": "https://github.com/BrainEmber/project_3_hiking_app#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
+    "dotenv": "^4.0.0",
     "express": "^4.15.4",
-    "mongoose": "^4.11.7"
+    "mongoose": "^4.11.7",
+    "request": "^2.81.0"
   }
 }

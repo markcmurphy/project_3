@@ -73,3 +73,55 @@ app.controller('appController', ['$http', function($http){
   }
   this.getHikes();
 }]);
+
+
+// beginning of weather controller
+app.controller('WeatherCtrl', ['$http', function($http){
+    const controller = this;
+    this.message = 'Weather is....',
+    this.getWeather = function() {
+      console.log('called')
+        $http({
+            method: 'GET',
+            url: '/weather'
+        }).then(
+            function(response){
+                console.log(response, ' this is response')
+                controller.message = response.data.main.temp + "°F in " + response.data.name
+                // $scope.photos = response
+            },
+            function(err){
+                console.log(err);
+            }
+        );
+    }
+    // end of this.getWeather
+
+    this.postWeather = function() {
+      console.log('called')
+      const data = {
+        city: controller.query
+      }
+      console.log(controller.query, 'post')
+      $http({
+        method: 'POST',
+        url: '/weather',
+        data: data
+
+      }).then(
+        function(response) {
+          console.log(response, ' this is response from post')
+          controller.message = response.data.main.temp + "°F in " + response.data.name
+          // $scope.photos = response
+
+        },
+        function(err) {
+          console.log(err);
+        }
+      );
+    }
+// end of this.postWeather
+
+
+}]);
+// end of weather controller
