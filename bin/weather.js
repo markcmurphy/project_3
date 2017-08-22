@@ -1,13 +1,10 @@
 const express = require('express');
 const request = require('request');
 const apiKey = process.env.API_KEY;
-
 const getWeather = (res, city) => {
-
   const responseToClient = (res, data) => {
     res.send(data)
   }
-
     request("https://api.openweathermap.org/data/2.5/weather?q=" + city + "&units=imperial" + "&APPID=" + apiKey, function(error, response, body) {
       console.log('error:', error);
       console.log('statusCode:', response && response.statusCode); // Print the response status code if a response was received
