@@ -78,7 +78,7 @@ app.controller('appController', ['$http', function($http){
 // beginning of weather controller
 app.controller('WeatherCtrl', ['$http', function($http){
     const controller = this;
-    this.message = 'Weather is....',
+    this.message = 'Weather is..',
     this.getWeather = function() {
       console.log('called')
         $http({
@@ -88,6 +88,9 @@ app.controller('WeatherCtrl', ['$http', function($http){
             function(response){
                 console.log(response, ' this is response')
                 controller.message = response.data.main.temp + "°F in " + response.data.name
+                controller.wind = response.data.wind.speed + " mph wind"
+                controller.lon = response.data.coord.lon
+
                 // $scope.photos = response
             },
             function(err){
@@ -111,7 +114,11 @@ app.controller('WeatherCtrl', ['$http', function($http){
       }).then(
         function(response) {
           console.log(response, ' this is response from post')
-          controller.message = response.data.main.temp + "°F in " + response.data.name
+          controller.message = response.data.main.temp 
+          controller.wind = response.data.wind.speed + " mph wind"
+          if(controller.message > 30) {
+            controller.wear = 'wear a coat'
+          }
           // $scope.photos = response
 
         },
