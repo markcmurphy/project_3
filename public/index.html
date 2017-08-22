@@ -15,12 +15,12 @@
 
 <!-- Display all hikes and loop through list -->
 
-<div ng-repeat="hike in ctrl.hikes track by $index">
+<div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))">
     ID: {{hike._id}} </br>
     Hike Name: {{hike.hikeName}} - {{$index}}<br />
     Location: {{hike.location}} <br />
-    <button ng-click="ctrl.getWeatherByCity((hike.location))">{{hike.location}}</button><br>
-    <span>Weather: {{ctrl.cityTemps[hike.location]}}</span> <br />
+    <!-- <button ng-click="ctrl.getWeatherByCity((hike.location))">{{hike.location}}</button><br> -->
+    <span>Weather: {{ctrl.cityTemps[hike.location]}}</span><br />
 
   <!-- </section> -->
     Description: {{hike.waterToConsume}}<br />
