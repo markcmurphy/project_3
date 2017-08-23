@@ -157,6 +157,31 @@ this.getHikes();
 
 // authentication
 
+app.controller('LoginModalCtrl', function ($scope, $http, UsersApi) {
+
+  this.cancel = $scope.$dismiss;
+
+  this.submit = function (email, password) {
+    UsersApi.login(email, password).then(function (user) {
+      $scope.$close(user);
+    });
+  };
+
+  this.create = function(){
+    console.log('create ran');
+    $http({
+      method: 'POST',
+      url: '/users',
+      data: {
+        username: this.username,
+        password: this.password
+      }
+
+});
+
+
+
+
 app.run(function ($rootScope, $state, loginModal) {
 
   $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {

@@ -5,10 +5,13 @@ const getWeather = require('../bin/weather.js')
 
 //Index
 router.get('/', (req, res)=>{
+  req.session.body = 'body';
   Hikes.find((err, foundHikes)=>{
     res.json(foundHikes);
   });
 });
+
+
 
 //Create hike
 router.post('/', (req, res)=>{
@@ -32,6 +35,7 @@ router.put('/:id', (req, res)=>{
   });
 });
 
+// weather routing
 
 router.get('/byCity/:city', (req, res) => {
   Hikes.find({ city: req.params.location }, (err, city) => {
@@ -41,7 +45,6 @@ router.get('/byCity/:city', (req, res) => {
 });
 
 
-// authentication
 
 
 // do not edit below this line
