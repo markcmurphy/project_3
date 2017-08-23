@@ -78,16 +78,6 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
 
 
 
-<section class="container-fluid weather well" ng-controller="WeatherCtrl as weath">
-
-  <h1>{{weath.message}}</h1>
-<!-- displays temp from location specified in input field -->
-  <input type="text" ng-model="weath.query">
-      <button class="btn btn-primary" ng-click="weath.postWeather()">Search Weather for City</button>
-<br>
-<!-- displays weather in location specified in get route within weather.js controller -->
-    <button class="btn btn-primary" ng-click="weath.getWeather()">Get Weather for Austin</button>
-</section>
 
 
 
