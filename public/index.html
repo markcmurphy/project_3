@@ -5,12 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/bootstrap.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+  <script src="https://cdn.jsdelivr.net/ngstorage/0.3.6/ngStorage.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+  <script src="./lib/ngStorage.js"></script>
+  <script src="./lib/loading-bar.js"></script>
+  <script src="./js/services.js"></script>
   <script src="./js/app.js" charset="utf-8"></script>
   <title>Hiking app</title>
 </head>
 <body ng-controller="appController as ctrl">
+
+
 <h1>Welcome</h1>
+
 
 <!-- Display all hikes and loop through list -->
 <div ng-repeat="hike in ctrl.hikes">
@@ -57,9 +67,16 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
 </div>
 <!-- END this is where user submits new hike -->
 
+<!--
 
-
-
+<div class="container" <body ng-controller="sessionController as sess">>
+  <h5> Add a new user </h5>
+  <form ng-submit="sess.createUser();">
+    Username: <br /> <input type="text" ng-model="sess.userName" placeholder="Username"> <br /> <br />
+    Password: <br /> <input type="text" ng-model="sess.password" placeholder="Password"> <br /> <br />
+    <input type="submit" value="Create New User" class="btn btn-primary">
+  </form>
+</div> -->
 
 
 </body>

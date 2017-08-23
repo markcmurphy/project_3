@@ -32,13 +32,6 @@ router.put('/:id', (req, res)=>{
   });
 });
 
-router.get('/retrieve', function(req, res){
-	if(req.session.anyProperty === "any value"){
-    console.log('worked');
-  }
-  else {
-    console.log('did not work');
-	}
-});
+
 
 module.exports = router;
