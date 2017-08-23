@@ -1,0 +1,35 @@
+.weather {
+  margin-top: 20px;
+}
+
+body {
+  text-align: center;
+}
+
+.block {
+  position: absolute;
+  background-image: url('http://az616578.vo.msecnd.net/files/2016/06/30/636028626429115563-686613358_hikers3.jpg');
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: -5;
+}
+
+.showHike {
+  background-image: url("http://media.istockphoto.com/photos/wood-texture-picture-id485588773?k=6&m=485588773&s=612x612&w=0&h=9_zwLHTVHX5wMLEFu_IBV12PwQxsHzxtMtGFkmDPthk=");
+  display: inline-block;
+  padding-left: 10px;
+  border: 1px solid black;
+  margin-left: 10px;
+  max-width: 300px;
+  color: white;
+  box-shadow: black 5px 5px 0px 0px;
+  font-weight: bold;
+  font-family: Arial Black;
+  text-shadow: 1px;
+}
+
+h1 {
+  background-color: white;
+
+}
