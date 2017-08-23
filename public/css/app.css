@@ -1,3 +1,24 @@
 .weather {
   margin-top: 20px;
 }
+
+body {
+  text-align: center;
+  background-image: url('http://az616578.vo.msecnd.net/files/2016/06/30/636028626429115563-686613358_hikers3.jpg');
+  background-color: darkgreen;
+  background-size: cover;
+}
+
+.showHike {
+  background-color: #966F33;
+  display: inline-block;
+  padding-left: 10px;
+  border: 1px solid black;
+  margin-left: 10px;
+  max-width: 300px;
+}
+
+h1 {
+  background-color: white;
+
+}

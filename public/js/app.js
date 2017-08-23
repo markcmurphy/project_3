@@ -125,3 +125,12 @@ app.controller('WeatherCtrl', ['$http', function($http){
 
 }]);
 // end of weather controller
+
+
+
+app.controller("editFormReset", ["$scope", function($scope){
+  $scope.reset = function(){
+    $scope.editForm.$setPristine();
+    $scope.ctrl = {}
+  }
+}]);

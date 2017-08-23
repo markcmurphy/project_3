@@ -14,12 +14,12 @@
 <h1>Welcome</h1>
 
 <!-- Display all hikes and loop through list -->
-<div ng-repeat="hike in ctrl.hikes">
+<div ng-repeat="hike in ctrl.hikes" class="showHike">
     Hike Name: {{hike.hikeName}} <br />
     Location: {{hike.location}} <br />
     Description: {{hike.waterToConsume}} <br />
     Water to Consume: {{hike.waterToConsume}} <br />
-    Clothing to wear: {{hike.clothingToWear}} <br />
+    Clothing to wear: {{hike.clothingToWear}} <br /> <br>
 <!-- Display all hikes and loop through list -->
 
 <!-- Edit delete -->
@@ -29,14 +29,15 @@
 
 <!-- Edit hikes -->
 <a href="#" ng-click="ctrl.index = $index">Edit</a>
-  <form ng-if="$index===ctrl.index"  ng-submit="ctrl.editHike(hike)">
+  <form ng-controller="editFormReset as form" name="editForm" ng-if="$index===ctrl.index"  ng-submit="ctrl.editHike(hike)">
     Hike name: <br /> <input type="text" ng-model="ctrl.editedhikeName" placeholder="Name of hike"> <br /> <br />
     Location: <br /> <input type="text" ng-model="ctrl.editedlocation" placeholder="Location"> <br /> <br />
     Description:  <br /> <input type="text" ng-model="ctrl.editeddescription" placeholder="Description"> <br /> <br />
     Amount of water to consume: <br />  <input type="text" ng-model="ctrl.editedwaterToConsume" placeholder="description"> <br /> <br />
     Clothing to wear <br />  <input type="text" ng-model="ctrl.editedclothingToWear" placeholder="description"> <br /> <br />
-    <input type="submit" value="Submit edited trip" class="btn btn-success">
-  </form>
+    <input type="submit" value="Submit edited trip" class="btn btn-success" >
+    <button ng-click="ctrl.index = $off">Close Form</button>
+  </form> <br>
 <!-- Edit hikes -->
 
 </div>
