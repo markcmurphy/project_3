@@ -7,17 +7,25 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="./css/bootstrap.css">
   <link rel="stylesheet" href="/css/app.css">
+  <script
+    src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+    crossorigin="anonymous"></script>
+  <script src="./js/jquery.js" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
   <script src="./js/app.js" charset="utf-8"></script>
   <title>Hiking app</title>
 </head>
 
 <body ng-controller="appController as ctrl">
+  <div class="block">
+
+  </div>
   <h1>Welcome {{currentUser}}</h1>
 
   <!-- Display all hikes and loop through list -->
 
-  <div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))">
+  <div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))" >
           <div class="container-fluid">
           <div class="row well">
         <div class="col-sm-3">
