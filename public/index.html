@@ -42,7 +42,7 @@
 
 
 <!-- Edit hikes -->
-<a href="#" ng-click="ctrl.index = $index">Edit</a>
+<a class="btn btn-primary" href="#" ng-click="ctrl.index = $index">Edit</a>
   <form ng-controller="editFormReset as form" name="editForm" ng-if="$index===ctrl.index"  ng-submit="ctrl.editHike(hike)">
     Hike name: <br /> <input type="text" ng-model="ctrl.editedhikeName" placeholder="Name of hike"> <br /> <br />
     Location: <br /> <input type="text" ng-model="ctrl.editedlocation" placeholder="Location"> <br /> <br />

@@ -11,17 +11,17 @@ $(document).ready(function() {
 
 let index = 0;
 
-setInterval(change_up, 10000);
+setInterval(change_up, 20000);
 
 function change_up(){
 
   index = (index + 1 < images.length) ? index + 1 : 0;
 
-  $('.block').fadeOut(3000, function(){
+  $('.block').fadeOut(2000, function(){
 
     $(this).css('background-image', 'url('+ images[index] + ')')
 
-    $(this).fadeIn(3000);
+    $(this).fadeIn(2000);
 
   });
 }
