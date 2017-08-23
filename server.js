@@ -7,6 +7,7 @@ const passport = require('passport');
 const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 3000;
 const session = require('express-session');
+const LocalStrategy = require('passport-local').Strategy;
 require('dotenv').config();
 require('./config/passport.js')(passport);
 
