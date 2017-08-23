@@ -4,9 +4,15 @@
 
 body {
   text-align: center;
+}
+
+.block {
+  position: absolute;
   background-image: url('http://az616578.vo.msecnd.net/files/2016/06/30/636028626429115563-686613358_hikers3.jpg');
-  background-color: darkgreen;
   background-size: cover;
+  height: 100%;
+  width: 100%;
+  z-index: -5;
 }
 
 .showHike {
