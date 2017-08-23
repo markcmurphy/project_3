@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const hikeSchema = mongoose.Schema({
     hikeName: String,
     location: String,
+    weather: String,
     description: String,
     waterToConsume: Number,
     clothingToWear: String,
