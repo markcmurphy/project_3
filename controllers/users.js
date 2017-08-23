@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var User = require('../models/users.js');
+const User = require('../models/users.js');
 
 router.get('/retrieve', function(req, res){ //any route will work
 	if (req.session.body === "body"){

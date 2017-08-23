@@ -3,13 +3,17 @@ const express = require('express');
 const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const passport = require('passport');
+const cookieParser = require('cookie-parser');
 const port = process.env.PORT || 3000;
 const session = require('express-session');
 require('dotenv').config();
+require('./config/passport.js')(passport);
 
 
 //Middleware installed
 app.use(bodyParser.json());
+app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:false}));
 app.use(express.static('public'));
 app.use(session({
@@ -17,6 +21,8 @@ app.use(session({
 	  resave: false,
 	  saveUninitialized: false
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
 const hikingController = require('./controllers/hiking.js');
 app.use('/hikes', hikingController)
