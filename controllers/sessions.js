@@ -6,17 +6,18 @@ const LocalStrategy = require('passport-local').Strategy;
 const User = require('../models/users.js');
 
 // authentication
-router.get('/retrieve', function(req, res){ //any route will work
-	if (req.session.body === "body"){
-    console.log('worked!');
-	} else {
-  console.log('did not work :( ');
-	}
-});
-
-router.get('/update', function(req, res){ //any route will work
-	req.session.anyProperty = 'changing anyProperty to this value';
-});
+// router.get('/retrieve', function(req, res){ //any route will work
+// 	if (req.session.body === ){
+//     console.log('worked!');
+// 	} else {
+//   console.log('did not work :( ');
+// 	}
+// });
+//
+// router.get('/update', function(req, res){ //any route will work
+// 	req.session.anyProperty = 'changing anyProperty to this value';
+// 	console.log(req.session.anyProperty);
+// });
 
 router.get('/destroy-route', function(){ //any route will work
 	req.session.destroy(function(err){
@@ -28,16 +29,16 @@ router.get('/destroy-route', function(){ //any route will work
 	});
 });
 
-//...farther down the page
-router.post('/', function(req, res){
-    User.findOne({ email: req.body.email }, function(err, foundUser){
-        if(req.body.password == foundUser.password){
-            res.send('logged in');
-        } else {
-            res.send('wrong password');
-        }
-    });
-});
+// //...farther down the page
+// router.post('/', function(req, res){
+//     User.findOne({ email: req.body.email }, function(err, foundUser){
+//         if(req.body.password == foundUser.password){
+//             res.send('logged in');
+//         } else {
+//             res.send('wrong password');
+//         }
+//     });
+// });
 
 // router.post('/signup', passport.authenticate('local-signup', {
 //         successRedirect : '/profile', // redirect to the secure profile section
@@ -72,19 +73,19 @@ router.post('/register', (req, res, next) => {
 
 
 router.post('/login', (req, res, next) => {
+  User.findOne({email: req.body.email}, (err, foundUser) => {
 
-  User.findOne({email: req.body.email}, (err, user) => {
-
-      if(user){
+      if(foundUser){
                      //now compare hash with the password from the form
-            if(bcrypt.compareSync(req.body.password, user.password)){
-                req.session.message  = '';
-                req.session.email = req.body.email;
-                req.session.logged   = true;
-                console.log(req.session, req.body)
+            if(bcrypt.compareSync(req.body.password, foundUser.password)){
+							req.session.email = req.body.email;
+					req.session.currentuser = foundUser;
+					req.session.logged = true;
+					console.log(foundUser);
+					console.log(req.session.logged);
                 res.redirect('/')
             } else {
-              console.log('else in bcrypt compare')
+              console.log('else in bcrypt compare');
               req.session.message = 'email or password are incorrect';
               res.redirect('/sessions/login')
 

@@ -157,108 +157,31 @@ this.getHikes();
 
 // authentication
 
-app.controller('LoginModalCtrl', function ($scope, $http, UsersApi) {
 
+app.controller('LoginModalCtrl', function ($scope, $http) {
+  const controller = this;
   this.cancel = $scope.$dismiss;
-
-  this.submit = function (email, password) {
-    UsersApi.login(email, password).then(function (user) {
-      $scope.$close(user);
-    });
-  };
-
   this.create = function(){
-    console.log('create ran');
     $http({
       method: 'POST',
-      url: '/users',
+      url: '/sessions/register',
       data: {
-        username: this.username,
+        email: this.email,
         password: this.password
       }
-
-});
-
-
-
-
-app.run(function ($rootScope, $state, loginModal) {
-
-  $rootScope.$on('$stateChangeStart', function (event, toState, toParams) {
-    var requireLogin = toState.data.requireLogin;
-
-    if (requireLogin && typeof $rootScope.currentUser === 'undefined') {
-      event.preventDefault();
-
-      loginModal()
-        .then(function () {
-          return $state.go(toState.name, toParams);
-        })
-        .catch(function () {
-          return $state.go('welcome');
-        });
     }
-  });
-});
-
-
-app.config(function ($stateProvider) {
-
-  $stateProvider
-    .state('welcome', {
-      url: '/welcome',
-      // ...
+    )
+},
+  this.login = function(){
+    $http({
+      method: 'POST',
+      url: '/sessions/login',
       data: {
-        requireLogin: false
+        email: this.email,
+        password: this.password
       }
     })
-    .state('app', {
-      abstract: true,
-      // ...
-      data: {
-        requireLogin: true // this property will apply to all children of 'app'
-      }
-    })
-    .state('app.dashboard', {
-      // child state of `app`
-      // requireLogin === true
-    })
+  }
 
-});
-
-app.config(function ($httpProvider) {
-
-  $httpProvider.interceptors.push(function ($timeout, $q, $injector) {
-    var loginModal, $http, $state;
-
-    // this trick must be done so that we don't receive
-    // `Uncaught Error: [$injector:cdep] Circular dependency found`
-    $timeout(function () {
-      loginModal = $injector.get('loginModal');
-      $http = $injector.get('$http');
-      $state = $injector.get('$state');
-    });
-
-    return {
-      responseError: function (rejection) {
-        if (rejection.status !== 401) {
-          return rejection;
-        }
-
-        var deferred = $q.defer();
-
-        loginModal()
-          .then(function () {
-            deferred.resolve( $http(rejection.config) );
-          })
-          .catch(function () {
-            $state.go('welcome');
-            deferred.reject(rejection);
-          });
-
-        return deferred.promise;
-      }
-    };
-  });
 
 });

@@ -13,8 +13,7 @@
   <title>Hiking app</title>
 </head>
 <body ng-controller="appController as ctrl">
-<h1>Welcome</h1>
-{{currentUser}}
+<h1>Welcome {{User.email}}</h1>
 <!-- Display all hikes and loop through list -->
 
 <div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))">
@@ -68,42 +67,39 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
 <!-- END this is where user submits new hike -->
 
 
-<!-- testing WeatherCtrl -->
-<section class="container-fluid weather well"
-
-  <h1>{{ctrl.message}}</h1>
-<!-- displays temp from location specified in input field -->
-  <input type="text" ng-model="ctrl.query">
-      <button class="btn btn-primary" ng-click="ctrl.postWeather()">Search Weather for City</button>
-<br>
-<!-- displays weather in location specified in get route within weather.js controller -->
-    <button class="btn btn-primary" ng-click="ctrl.getWeather()">Get Weather</button>
-</section>
-
-
-<!-- END testing WeatherCtrl -->
-
-<!-- testing auth -->
-<div>
-  <form action="/sessions/login" method="POST">
-    <input type="email" name="email"/>
-    <input type="password" name="password"/>
-    <input type="submit" name="" value="login">
-  </form>
-  <button ng-click="LoginModalCtrl.cancel()">Cancel</button>
-</div>
-
+<hr>
+<hr>
 <hr>
 
+<!-- testing auth -->
+
+
+
+<section ng-controller="LoginModalCtrl as auth">
+
+
+  <div>
+    <form ng-submit="auth.login();">
+      <input type="email" ng-model="auth.email">
+      <input type="password" ng-model="auth.password">
+      <input type="submit" name="" value="login">
+    </form>
+    <button ng-click="LoginModalCtrl.cancel()">Cancel</button>
+  </div>
+
+
+
 <div>
-  <form action="/sessions/register" method="POST">
-    <input type="email" name="email"/>
-    <input type="password" name="password"/>
+  <form ng-submit="auth.create();">
+    <input type="email" ng-model="auth.email">
+    <input type="password" ng-model="auth.password">
     <input type="submit" name="" value="create">
   </form>
-  <button ng-click="LoginModalCtrl.cancel()">Cancel</button>
+  <button ng-click="auth.cancel()">Cancel</button>
 </div>
+
 <!-- end of testing auth -->
+</section>
 
 
 
