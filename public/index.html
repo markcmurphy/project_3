@@ -43,7 +43,7 @@
 
   <!-- Display all hikes and loop through list -->
 
-  <div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))" >
+  <div ng-repeat="hike in ctrl.hikes.slice().reverse() track by $index" ng-init="ctrl.getWeatherByCity((hike.location))" >
           <div class="container-fluid">
           <div class="row well">
         <div class="col-sm-3">
