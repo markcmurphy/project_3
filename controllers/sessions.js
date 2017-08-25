@@ -63,7 +63,7 @@ router.post('/register', (req, res, next) => {
     req.session.message  = '';
     req.session.email = user.email;
     req.session.logged   = true;
-		res.redirect('/');
+		res.json(user);
   });
 });
 
@@ -78,12 +78,13 @@ router.post('/login', (req, res, next) => {
       if(foundUser){
                      //now compare hash with the password from the form
             if(bcrypt.compareSync(req.body.password, foundUser.password)){
-							req.session.email = req.body.email;
+					req.session.email = req.body.email;
 					req.session.currentuser = foundUser;
 					req.session.logged = true;
+					console.log(req.session.email);
 					console.log(foundUser);
 					console.log(req.session.logged);
-                res.redirect('/')
+        	res.json(foundUser);
             } else {
               console.log('else in bcrypt compare');
               req.session.message = 'email or password are incorrect';

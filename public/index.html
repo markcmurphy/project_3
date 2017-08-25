@@ -13,7 +13,12 @@
   <title>Hiking app</title>
 </head>
 <body ng-controller="appController as ctrl">
-<h1>Welcome {{User.email}}</h1>
+  <!-- <section ng-controller="LoginModalCtrl as auth"> -->
+    <!-- <div ng-repeat="user in auth.user"> -->
+
+
+    <!-- </div> -->
+
 <!-- Display all hikes and loop through list -->
 
 <div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))">
@@ -87,7 +92,7 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
     <button ng-click="LoginModalCtrl.cancel()">Cancel</button>
   </div>
 
-
+      <h1>Welcome {{auth.user._id}}</h1>
 
 <div>
   <form ng-submit="auth.create();">
@@ -100,6 +105,7 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
 
 <!-- end of testing auth -->
 </section>
+
 
 
 

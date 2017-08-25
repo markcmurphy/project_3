@@ -38,6 +38,7 @@ app.controller('appController', ['$http', function($http){
       }
     }).then(
       function(res){
+
         controller.getHikes();
       },
       function(err){
@@ -77,8 +78,7 @@ app.controller('appController', ['$http', function($http){
         console.log(err);
       }
     );
-  },
-
+  }
   this.getWeather = function() {
     console.log('called')
       $http({
@@ -160,7 +160,10 @@ this.getHikes();
 
 app.controller('LoginModalCtrl', function ($scope, $http) {
   const controller = this;
+  this.foundUser = {};
+  this.user = " ";
   this.cancel = $scope.$dismiss;
+
   this.create = function(){
     $http({
       method: 'POST',
@@ -179,9 +182,16 @@ app.controller('LoginModalCtrl', function ($scope, $http) {
       data: {
         email: this.email,
         password: this.password
-      }
-    })
-  }
+      }}).then(
+          function(response) {
+            // console.log(response.data);
+            controller.user = response.data;
+            // console.log(controller.user);
 
-
+          },
+        function(err) {
+          console.log(err);
+        }
+      );
+}
 });
