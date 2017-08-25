@@ -6,6 +6,83 @@ app.controller('appController', ['$http', function($http) {
   // objects created to be used in getWeatherByCity()
   this.message = {},
   this.cityTemps = {},
+  this.hikes  = [],
+  this.createdHike = {},
+  this.edit = 1,
+  this.toggleView =  () => {
+   this.toggle = !this.toggle;
+ };
+  this.getHikes = function(){
+    $http({
+      method: 'GET',
+      url: '/hikes'
+    }).then(
+      function(res){
+        controller.hikes = res.data
+        console.log(controller.hikes);
+      },
+      function(err){
+        console.log(err);
+      }
+    );
+  },
+  this.createHikes = function(){
+    $http({
+      method: 'POST',
+      url: '/hikes',
+      data: {
+        Id: this._id,
+        hikeName: this.hikeName,
+        location: this.location,
+        description: this.description,
+        waterToConsume: this.waterToConsume,
+        clothingToWear: this.clothingToWear
+      }
+    }).then(
+      function(res){
+        controller.getHikes();
+      },
+      function(err){
+        console.log(err);
+      }
+    );
+  },
+  this.editHike = function(hike){
+    $http({
+      method: 'PUT',
+      url: '/hikes/' + hike._id,
+      data: {
+        hikeName: this.editedhikeName,
+        location: this.editedlocation,
+        description: this.editeddescription,
+        waterToConsume: this.editedwaterToConsume,
+        clothingToWear: this.editedclothingToWear
+      }
+    }).then(
+      function(res){
+        controller.getHikes();
+      },
+      function(err){
+        console.log(err);
+      }
+    );
+  },
+  this.deleteHike = function(hike){
+    $http({
+      method: 'DELETE',
+      url: '/hikes/' + hike._id
+    }).then(
+      function(res){
+        controller.getHikes();
+      },
+      function(err){
+        console.log(err);
+      }
+    );
+  }
+  this.getWeather = function() {
+    console.log('called')
+=======
   this.wind = {},
   this.min = {},
   this.wear = {},
@@ -114,3 +191,45 @@ app.controller('appController', ['$http', function($http) {
 
   this.getHikes();
 }]);
+// end of weather controller
+
+// authentication
+
+
+app.controller('LoginModalCtrl', function ($scope, $http) {
+  const controller = this;
+  this.foundUser = {};
+  this.user = {};
+  this.cancel = $scope.$dismiss;
+
+  this.create = function(){
+    $http({
+      method: 'POST',
+      url: '/sessions/register',
+      data: {
+        email: this.email,
+        password: this.password
+      }
+    }
+    )
+},
+  this.login = function(){
+    $http({
+      method: 'POST',
+      url: '/sessions/login',
+      data: {
+        email: this.email,
+        password: this.password
+      }}).then(
+          function(response) {
+            // console.log(response.data);
+            controller.user = response.data;
+            // console.log(controller.user);
+
+          },
+        function(err) {
+          console.log(err);
+        }
+      );
+}
+});

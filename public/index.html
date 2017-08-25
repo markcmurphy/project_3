@@ -16,9 +16,117 @@
     crossorigin="anonymous"></script>
   <script src="./js/jquery.js" charset="utf-8"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js" charset="utf-8"></script>
+  <script src="./js/loginModal.js" charset="utf-8"></script>
+  <script src="js/angular-ui-router.js"></script>
   <script src="./js/app.js" charset="utf-8"></script>
   <title>Hiking app</title>
 </head>
+  
+<body ng-controller="appController as ctrl">
+  <!-- <section ng-controller="LoginModalCtrl as auth"> -->
+    <!-- <div ng-repeat="user in auth.user"> -->
+
+
+    <!-- </div> -->
+
+<!-- Display all hikes and loop through list -->
+
+<div ng-repeat="hike in ctrl.hikes track by $index" ng-init="ctrl.getWeatherByCity((hike.location))">
+    ID: {{hike._id}} </br>
+    Hike Name: {{hike.hikeName}} - {{$index}}<br />
+    Location: {{hike.location}} <br />
+    <!-- <button ng-click="ctrl.getWeatherByCity((hike.location))">{{hike.location}}</button><br> -->
+    <span>Weather: {{ctrl.cityTemps[hike.location]}}</span><br />
+
+  <!-- </section> -->
+    Description: {{hike.waterToConsume}}<br />
+    Water to Consume: {{hike.waterToConsume}} <br />
+    Clothing to wear: {{hike.clothingToWear}} <br />
+<!-- Display all hikes and loop through list -->
+
+<!-- Edit delete -->
+<button ng-click="ctrl.deleteHike(hike)" class="btn btn-primary">Delete</button>
+<!-- Edit delete -->
+
+
+<!-- Edit hikes -->
+<a href="#" ng-click="ctrl.index = $index">Edit</a>
+  <form ng-if="$index===ctrl.index"  ng-submit="ctrl.editHike(hike)">
+    Hike name: <br /> <input type="text" ng-model="ctrl.editedhikeName" placeholder="Name of hike"> <br /> <br />
+    Location: <br /> <input type="text" ng-model="ctrl.editedlocation" placeholder="Location"> <br /> <br />
+    Description:  <br /> <input type="text" ng-model="ctrl.editeddescription" placeholder="Description"> <br /> <br />
+    Amount of water to consume: <br />  <input type="text" ng-model="ctrl.editedwaterToConsume" placeholder="description"> <br /> <br />
+    Clothing to wear <br />  <input type="text" ng-model="ctrl.editedclothingToWear" placeholder="description"> <br /> <br />
+    <input type="submit" value="Submit edited trip" class="btn btn-success">
+  </form>
+<!-- Edit hikes -->
+
+<hr>
+</div>
+
+
+
+
+<!-- START this is where user submits new hike -->
+<div class="container">
+<h5> Add a new hike </h5>
+<form ng-submit="ctrl.createHikes();">
+Hike name: <br /> <input type="text" ng-model="ctrl.hikeName" placeholder="Name of hike"> <br /> <br />
+Location: <br /> <input type="text" ng-model="ctrl.location" placeholder="Location"> <br /> <br />
+Description:  <br /> <input type="text" ng-model="ctrl.description" placeholder="author"> <br /> <br />
+Amount of water to consume: <br />  <input type="text" ng-model="ctrl.waterToConsume" placeholder="description"> <br /> <br />
+Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" placeholder="description"> <br /> <br />
+<input type="submit" value="Submit New Hike" class="btn btn-primary">
+</form>
+</div>
+<!-- END this is where user submits new hike -->
+
+
+<hr>
+<hr>
+<hr>
+
+<!-- testing auth -->
+
+
+
+<section ng-controller="LoginModalCtrl as auth">
+
+
+  <div>
+    <form ng-submit="auth.login();">
+      <input type="email" ng-model="auth.email">
+      <input type="password" ng-model="auth.password">
+      <input type="submit" name="" value="login">
+    </form>
+    <button ng-click="LoginModalCtrl.cancel()">Cancel</button>
+  </div>
+
+      <h1>Welcome {{auth.user._id}}</h1>
+
+      <div class="well">
+        <p><a href="/users/{{auth.user._id}}">{{auth.user.email}}</a></p>
+        <p>{{auth.user.hikes}}</p>
+      </div>
+
+<div>
+  <form ng-submit="auth.create();">
+    <input type="email" ng-model="auth.email">
+    <input type="password" ng-model="auth.password">
+    <input type="submit" name="" value="create">
+  </form>
+  <button ng-click="auth.cancel()">Cancel</button>
+</div>
+
+<!-- end of testing auth -->
+</section>
+
+
+
+
+
+</div>
+=======
 
 <body ng-controller="appController as ctrl">
   <div class="block">
@@ -104,5 +212,4 @@
   <!-- END testing WeatherCtrl -->
   </div>
 </body>
-
 </html>

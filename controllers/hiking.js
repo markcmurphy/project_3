@@ -2,6 +2,8 @@ const express = require('express');
 const router = express.Router();
 const Hikes = require('../models/hikes.js');
 const getWeather = require('../bin/weather.js')
+const User = require('../models/users.js')
+const userPush = require('../bin/users.js')
 
 //Index
 router.get('/', (req, res)=>{
@@ -14,6 +16,7 @@ router.get('/', (req, res)=>{
 router.post('/', (req, res)=>{
   console.log(req.body);
   Hikes.create(req.body, (err, createdHike)=>{
+    userPush(res, createdHike);
     res.json(createdHike);
   });
 });
