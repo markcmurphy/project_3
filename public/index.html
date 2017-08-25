@@ -94,6 +94,11 @@ Clothing to wear <br />  <input type="text" ng-model="ctrl.clothingToWear" place
 
       <h1>Welcome {{auth.user._id}}</h1>
 
+      <div class="well">
+        <p><a href="/users/{{auth.user._id}}">{{auth.user.email}}</a></p>
+        <p>{{auth.user.hikes}}</p>
+      </div>
+
 <div>
   <form ng-submit="auth.create();">
     <input type="email" ng-model="auth.email">

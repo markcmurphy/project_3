@@ -6,6 +6,7 @@ app.controller('appController', ['$http', function($http){
   this.message = 'Weather is....',
   this.cityTemps = {},
   this.hikes  = [],
+  this.createdHike = {},
   this.edit = 1,
   this.toggleView =  () => {
    this.toggle = !this.toggle;
@@ -38,7 +39,6 @@ app.controller('appController', ['$http', function($http){
       }
     }).then(
       function(res){
-
         controller.getHikes();
       },
       function(err){
@@ -161,7 +161,7 @@ this.getHikes();
 app.controller('LoginModalCtrl', function ($scope, $http) {
   const controller = this;
   this.foundUser = {};
-  this.user = " ";
+  this.user = {};
   this.cancel = $scope.$dismiss;
 
   this.create = function(){

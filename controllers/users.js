@@ -2,12 +2,12 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users.js');
 
-router.put('/:id', (req,res)=> {
-  User.findByIdAndUpdate(req.params.id, req.body, ()=> {
-    res.redirect('/');
-  });
-});
-//
+// router.put('/:id', (req,res)=> {
+//   User.findByIdAndUpdate(req.params.id, req.body, ()=> {
+//     res.json();
+//   });
+// });
+// //
 //
 // router.get('/:id/edit', (req,res)=> {
 //   if(req.session.logged){
@@ -69,14 +69,13 @@ router.put('/:id', (req,res)=> {
 //
 //
 //
-// router.get('/:id', (req,res)=> {
-//   User.findById(req.params.id, (err, foundUser)=> {
-//     res.render('Users/show.ejs',{
-//       currentUser: req.session.currentuser,
-//       user:foundUser
-//     });
-//   });
-// });
+router.get('/:id', (req,res)=> {
+  User.findById(req.params.id, (err, foundUser)=> {
+      currentUser = req.session.currentuser,
+      user = foundUser
+      res.json(foundUser);
+    });
+  });
 
 
 router.get('/retrieve', function(req, res){ //any route will work
