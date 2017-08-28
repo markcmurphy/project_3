@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const Hike = require('./hikes.js')
 
-const userSchema = Schema({
+const userSchema = mongoose.Schema({
     email: String,
     password: String,
-    hikes: [Hike.schema]
+    hikes: []
 });
 
 const User = mongoose.model('User', userSchema);

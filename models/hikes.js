@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const User = require('./users.js');
 const Schema = mongoose.Schema;
-
+const User = require('./users.js');
 
 const hikeSchema = mongoose.Schema({
     hikeName: String,
