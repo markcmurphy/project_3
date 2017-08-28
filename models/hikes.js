@@ -7,8 +7,7 @@ const hikeSchema = mongoose.Schema({
     hikeName: String,
     location: String,
     weather: String,
-    description: String,
-    creator: [User.schema]
+    description: String
 });
 
 const Hikes = mongoose.model('Hike', hikeSchema);
